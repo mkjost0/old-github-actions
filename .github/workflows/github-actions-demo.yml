@@ -33,6 +33,7 @@ jobs:
       - name: Run Unit Tests
         run: |
           scons build/ALL/base/bitunion.test.opt
+          cd ${{ github.workspace }}
           ./build/ALL/base/bitunion.test.opt
       - name: Run build script
         run: |
