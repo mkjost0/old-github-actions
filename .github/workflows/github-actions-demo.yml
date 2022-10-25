@@ -34,7 +34,7 @@ jobs:
         run: |
           cd ${{ github.workspace }}
           cd tests
-          ls
+          ./main.py run gem5/learning_gem5
         # ./main.py run gem5/learning_gem5
       - run: echo "🍏 This job's status is ${{ job.status }}."
 
