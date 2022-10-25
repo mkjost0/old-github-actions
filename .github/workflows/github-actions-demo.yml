@@ -33,8 +33,8 @@ jobs:
       - name: Run build script
         run: |
           cd ${{ github.workspace }}
-          cd tests
-          ./main.py run gem5/learning_gem5
+          cat TESTING.md
+        # ./main.py run gem5/learning_gem5
         # ./main.py run gem5/learning_gem5
       - run: echo "🍏 This job's status is ${{ job.status }}."
 
