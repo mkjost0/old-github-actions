@@ -60,3 +60,13 @@ jobs:
 
 #       #  on push, we want to run main.py, and assign reviewers
 #       # if main.py is a success AND we have votes, we can submit
+
+
+# on:
+#   pull_request_review:
+#     types: [submitted]
+# jobs:
+# build:
+# if: github.event.review.state == 'approved'
+# runs-on: ubuntu-latest
+# steps: ...
