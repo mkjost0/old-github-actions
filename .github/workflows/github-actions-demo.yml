@@ -37,7 +37,7 @@ jobs:
           ./build/ALL/base/bitunion.test.opt
           cd tests
           python main.py run
-      - name: Run precommit tests
+      # - name: Run precommit tests
 
       - run: echo "🍏 This job's status is ${{ job.status }}."
 
