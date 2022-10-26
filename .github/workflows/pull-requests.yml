@@ -38,4 +38,4 @@ jobs:
            cd tests
            python main.py run
 
-       - run: echo "🍏 This job's status is ${{ job.status }}."
+      - run: echo "🍏 This job's status is ${{ job.status }}."
