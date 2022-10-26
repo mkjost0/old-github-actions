@@ -1,0 +1,41 @@
+name: Pull Request Events
+run-name: ${{ github.actor }} is testing pull request
+on:
+  pull_request_review:
+    types: [submitted]
+
+jobs:
+  build:
+
+# checks if pull request has been approved before running additional tests
+    if: github.event.review.state == 'approved'
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.8"]
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install flake8 pytest
+          python -m pip install scons
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+      - name: Build gem5
+        run: scons build/ALL/gem5.opt -j 2
+
+      - name: Run build script
+        run: |
+           scons build/ALL/base/bitunion.test.opt
+           ./build/ALL/base/bitunion.test.opt
+           cd tests
+           python main.py run
+
+       - run: echo "🍏 This job's status is ${{ job.status }}."
