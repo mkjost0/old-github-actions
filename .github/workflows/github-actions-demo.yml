@@ -22,8 +22,8 @@ jobs:
           pip install flake8 pytest
           python -m pip install scons
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-      - name: Build gem5
-        run: scons build/X86/gem5.opt -j 2
+      # - name: Build gem5
+      #   run: scons build/X86/gem5.opt -j 2
       # - name: Lint with flake8
       #   run: |
       #     # stop the build if there are Python syntax errors or undefined names
@@ -32,12 +32,13 @@ jobs:
       #     flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
       - name: Run build script
         run: |
-          scons build/ALL/base/bitunion.test.opt
-          cd ${{ github.workspace }}
-          ./build/ALL/base/bitunion.test.opt
-          cd tests
+          ./test.py
+          # scons build/ALL/base/bitunion.test.opt
+          # cd ${{ github.workspace }}
+          # ./build/ALL/base/bitunion.test.opt
+          # cd tests
         # cat main.py
-          ./main.py run gem5/learning_gem5
+          # ./main.py run gem5/learning_gem5
         # ./main.py run gem5/learning_gem5
       - run: echo "🍏 This job's status is ${{ job.status }}."
 
