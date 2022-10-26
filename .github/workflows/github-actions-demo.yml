@@ -44,7 +44,9 @@ jobs:
           done
       - name: try jenkins
         run: |
+          ls
           cd tests/jenkins
-          ./presumbit.h
+          ls
+          ./presubmit.h
 
       - run: echo "🍏 This job's status is ${{ job.status }}."
