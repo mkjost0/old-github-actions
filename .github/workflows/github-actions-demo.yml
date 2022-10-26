@@ -42,5 +42,9 @@ jobs:
               reorder-python-imports $file
             fi
           done
+      - name: try jenkins
+        run: |
+          cd tests/jenkins
+          ./presumbit.h
 
       - run: echo "🍏 This job's status is ${{ job.status }}."
