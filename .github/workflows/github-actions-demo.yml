@@ -38,7 +38,7 @@ jobs:
           cd tests
           echo "hello"
           python test.py
-          # python main.py run
+          python main.py run
       # - name: Run precommit tests
 
       - run: echo "🍏 This job's status is ${{ job.status }}."
