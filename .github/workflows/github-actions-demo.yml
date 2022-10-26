@@ -37,6 +37,7 @@ jobs:
           # ./build/ALL/base/bitunion.test.opt
           cd tests
           echo "hello"
+          python test.py
           python main.py run
       # - name: Run precommit tests
 
