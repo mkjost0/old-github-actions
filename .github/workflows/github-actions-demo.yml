@@ -2,6 +2,7 @@ name: GitHub Actions Demo
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on: [push]
 
+# we want to run precommit tests and assign reviewers
 jobs:
   build:
 
@@ -22,6 +23,24 @@ jobs:
           pip install flake8 pytest
           python -m pip install scons
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v19
+
+      - name: Install black and reorder-python-imports
+        run: pip install black reorder-python-imports
+
+      - name: Black and Sort changed files
+        run: |
+          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+            echo $file
+            if [[ $file == *.py ]]; then
+              black $file --check
+              reorder-python-imports $file
+            fi
+          done
+
       - name: Build gem5
         run: scons build/ALL/gem5.opt -j 2
       # - name: Lint with flake8
@@ -67,13 +86,3 @@ jobs:
 
 #       #  on push, we want to run main.py, and assign reviewers
 #       # if main.py is a success AND we have votes, we can submit
-
-
-# on:
-#   pull_request_review:
-#     types: [submitted]
-# jobs:
-# build:
-# if: github.event.review.state == 'approved'
-# runs-on: ubuntu-latest
-# steps: ...
