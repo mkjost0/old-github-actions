@@ -32,10 +32,10 @@ jobs:
       #     flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
       - name: Run build script
         run: |
-          python3 test.py
-          # scons build/ALL/base/bitunion.test.opt
-          # cd ${{ github.workspace }}
-          # ./build/ALL/base/bitunion.test.opt
+          # python3 test.py
+          scons build/ALL/base/bitunion.test.opt
+          cd ${{ github.workspace }}
+          ./build/ALL/base/bitunion.test.opt
           # cd tests
         # cat main.py
           # ./main.py run gem5/learning_gem5
