@@ -32,14 +32,13 @@ jobs:
       #     flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
       - name: Run build script
         run: |
-          # python3 test.py
           scons build/ALL/base/bitunion.test.opt
           cd ${{ github.workspace }}
           ./build/ALL/base/bitunion.test.opt
-          # cd tests
-        # cat main.py
-          # ./main.py run gem5/learning_gem5
-        # ./main.py run gem5/learning_gem5
+          cd tests
+          python main.py run
+      - name: Run precommit tests
+
       - run: echo "🍏 This job's status is ${{ job.status }}."
 
 # gem5/tests/gem5/learning_gem5/part1_test.py
