@@ -32,10 +32,11 @@ jobs:
       #     flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
       - name: Run build script
         run: |
-          scons build/ALL/base/bitunion.test.opt
+          # scons build/ALL/base/bitunion.test.opt
           cd ${{ github.workspace }}
-          ./build/ALL/base/bitunion.test.opt
+          # ./build/ALL/base/bitunion.test.opt
           cd tests
+          echo "hello"
           python main.py run
       # - name: Run precommit tests
 
