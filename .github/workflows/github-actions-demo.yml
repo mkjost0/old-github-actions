@@ -33,15 +33,15 @@ jobs:
       - name: Install black and reorder-python-imports
         run: pip install black reorder-python-imports
 
-      - name: Black and Sort changed files
-        run: |
-          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-            echo $file
-            if [[ $file == *.py ]]; then
-              black $file --check
-              reorder-python-imports $file
-            fi
-          done
+      # - name: Black and Sort changed files
+      #   run: |
+      #     for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+      #       echo $file
+      #       if [[ $file == *.py ]]; then
+      #         black $file --check
+      #         reorder-python-imports $file
+      #       fi
+      #     done
 
       - name: Run build script
         run: |
