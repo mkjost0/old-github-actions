@@ -48,7 +48,7 @@ jobs:
           #  scons build/ALL/base/bitunion.test.opt
           #  ./build/ALL/base/bitunion.test.opt
            # scons build/ALL/gem5.opt -j 10
-           # cd tests
+           cd tests
            #  ./main.py run -j4 -t4 gem5 -vv && scons -C .. --no-compress-debug \ --ignore-style build/ARM/unittests.opt
            ./main.py run gem5/x86-boot-tests --skip-build
 
