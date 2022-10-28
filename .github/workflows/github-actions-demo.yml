@@ -12,7 +12,7 @@ jobs:
         python-version: ["3.8"]
 
     steps:
-      # - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
       # - name: Set up Python ${{ matrix.python-version }}
       #   uses: actions/setup-python@v4
@@ -47,11 +47,15 @@ jobs:
       #     cd tests/jenkins
       #     ls
       #     ./presubmit.sh
-
+      - name: Check out repo's default branch
+        uses: actions/checkout@v3
       - run: echo "🍏 This job's status is ${{ job.status }}."
       - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
       - run: cd /home/mkjost/runner-test/actions-runner/gem5
       - run: ls
+      # - run: |
+      #   pwd
+      #   working-directory: /home/mkjost/runner-test/actions-runner/gem5
       - name: Run build script
         run: |
            scons /build/ALL/base/bitunion.test.opt
