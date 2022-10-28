@@ -51,11 +51,11 @@ jobs:
       - run: echo "🍏 This job's status is ${{ job.status }}."
       - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
       - run: pwd
-      - run: cd /home/mkjost/runner-test/gem5/
+      - run: cd /home/mkjost/runner-test/actions-runner/gem5
       - run: pwd
       - name: Run build script
         run: |
-           scons /home/mkjost/runner-test/gem5/build/ALL/base/bitunion.test.opt
-           ./home/mkjost/runner-test/gem5/build/ALL/base/bitunion.test.opt
+           scons /build/ALL/base/bitunion.test.opt
+           ./build/ALL/base/bitunion.test.opt
            cd tests
            ./main.py run -j4 -t4 gem5 -vv && scons -C .. --no-compress-debug \ --ignore-style build/ARM/unittests.opt
