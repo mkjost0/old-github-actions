@@ -35,7 +35,8 @@ jobs:
         run: |
            scons build/ALL/base/bitunion.test.opt
            ./build/ALL/base/bitunion.test.opt
-           cd tests
-           python main.py run
+          #  scons build/ALL/gem5.opt -j 10
+          #  cd tests
+          #  ./main.py run gem5/x86-boot-tests -j 10 -t 10
 
       - run: echo "🍏 This job's status is ${{ job.status }}."
