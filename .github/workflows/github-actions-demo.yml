@@ -50,10 +50,10 @@ jobs:
 
       - run: echo "🍏 This job's status is ${{ job.status }}."
       - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
-      - run: cat /proc/cpuinfo
-      - name: Run build script
-        run: |
-           scons build/ALL/base/bitunion.test.opt
-           ./build/ALL/base/bitunion.test.opt
+      - run: pwd
+      # - name: Run build script
+        # run: |
+        #    scons build/ALL/base/bitunion.test.opt
+        #    ./build/ALL/base/bitunion.test.opt
           #  cd tests
           #  ./main.py run -j4 -t4 gem5 -vv && scons -C .. --no-compress-debug \ --ignore-style build/ARM/unittests.opt
