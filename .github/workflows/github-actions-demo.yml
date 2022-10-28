@@ -42,11 +42,6 @@ jobs:
               reorder-python-imports $file
             fi
           done
-      - name: try jenkins
-        run: |
-          cd tests/jenkins
-          ls
-          ./presubmit.sh
 
       - name: Run build script
         run: |
