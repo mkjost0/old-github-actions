@@ -26,9 +26,9 @@ jobs:
           python -m pip install scons
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
-      - name: Get changed files
-        id: changed-files
-        uses: tj-actions/changed-files@v19
+      # - name: Get changed files
+      #   id: changed-files
+      #   uses: tj-actions/changed-files@v19
 
       - name: Install black and reorder-python-imports
         run: pip install black reorder-python-imports
