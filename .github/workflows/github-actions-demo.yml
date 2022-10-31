@@ -55,7 +55,7 @@ jobs:
            #  pwd
             cd tests
            #  #  ./main.py run -j4 -t4 gem5 -vv && scons -C .. --no-compress-debug \ --ignore-style build/ARM/unittests.opt
-           ./main.py run gem5/x86-boot-tests -j24 --skip-build
+          #  ./main.py run gem5/x86-boot-tests -j24 --skip-build
           
 
       - run: echo "This job's status is ${{ job.status }}!"
