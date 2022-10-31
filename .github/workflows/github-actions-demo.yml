@@ -50,7 +50,7 @@ jobs:
         run: |
           #  scons build/ALL/base/bitunion.test.opt
           #  ./build/ALL/base/bitunion.test.opt
-          python test.py
+          # python test.py
             scons build/ALL/gem5.opt -j 24
            #  pwd
             cd tests
