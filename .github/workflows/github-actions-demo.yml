@@ -52,10 +52,10 @@ jobs:
           #  ./build/ALL/base/bitunion.test.opt
           # python test.py
             # scons build/ALL/gem5.opt -j 24
-           #  pwd
+            pwd
             cd tests
            #  #  ./main.py run -j4 -t4 gem5 -vv && scons -C .. --no-compress-debug \ --ignore-style build/ARM/unittests.opt
-           ./main.py run gem5/x86-boot-tests -j24
+          #  ./main.py run gem5/x86-boot-tests -j24
           
 
       - run: echo "This job's status is ${{ job.status }}!"
