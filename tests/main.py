@@ -10,7 +10,7 @@ import sys
 import os
 
 os.environ["PYTHONUNBUFFERED"] = "1"
-os.environ["PYTHONPATH"] = "/home/mkjost/.local/lib/python3.8/site-packages"
+# os.environ["PYTHONPATH"] = "/home/mkjost/.local/lib/python3.8/site-packages"
 
 base_dir = os.path.dirname(os.path.abspath(__file__))
 ext_path = os.path.join(base_dir, os.pardir, "ext")
