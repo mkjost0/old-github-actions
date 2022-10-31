@@ -45,6 +45,8 @@ jobs:
       #         reorder-python-imports $file
       #       fi
       #     done
+      - name: print docker info
+        run: docker images
       - name: Run the build process with Docker
         uses: addnab/docker-run-action@v3
         with:
