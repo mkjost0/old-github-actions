@@ -46,7 +46,9 @@ jobs:
       #       fi
       #     done
       - name: print docker info
-        run: docker images
+        run: |
+          docker images
+          docker run -u $UID:$GID --volume $(pwd):$(pwd) -w $(pwd) --rm "gcr.io/gem5-test/ubuntu-22.04_all-dependencies:latest" /usr/bin/env python3 /usr/bin/scons build/ALL/gem5.fast -j4 --no-compress-debug --ignore-style
       - name: Run the build process with Docker
         uses: addnab/docker-run-action@v3
         with:
