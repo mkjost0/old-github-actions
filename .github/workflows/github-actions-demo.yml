@@ -9,7 +9,7 @@ jobs:
     runs-on: [self-hosted, linux, x64]
     strategy:
       matrix:
-        python-version: ["3.8"]
+        python-version: [3.8]
 
     steps:
       # - uses: actions/checkout@v3
@@ -24,7 +24,8 @@ jobs:
           python -m pip install --upgrade pip
           pip install flake8 pytest
           python -m pip install scons
-          pip install pybind11
+          unset PYTHONPATH
+          unset PYTHONHOME
           # export PYTHONPATH='/home/mkjost/.local/lib/python3.8/site-packages'
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
@@ -49,10 +50,12 @@ jobs:
         run: |
           #  scons build/ALL/base/bitunion.test.opt
           #  ./build/ALL/base/bitunion.test.opt
+          python test.py
             scons build/ALL/gem5.opt -j 24
            #  pwd
             cd tests
            #  #  ./main.py run -j4 -t4 gem5 -vv && scons -C .. --no-compress-debug \ --ignore-style build/ARM/unittests.opt
            ./main.py run gem5/x86-boot-tests -j24 --skip-build
+          
 
       - run: echo "This job's status is ${{ job.status }}!"
