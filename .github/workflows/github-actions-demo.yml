@@ -48,7 +48,7 @@ jobs:
       - name: print docker info
         run: |
           docker images
-          docker run -u $UID:$GID --volume $(pwd):$(pwd) -w $(pwd) --rm "gcr.io/gem5-test/ubuntu-22.04_all-dependencies:latest" /usr/bin/env python3 /usr/bin/scons ./main.py run gem5/x86-boot-tests -j24
+          # docker run -u $UID:$GID --volume $(pwd):$(pwd) -w $(pwd) --rm "gcr.io/gem5-test/ubuntu-22.04_all-dependencies:latest" /usr/bin/env python3 /usr/bin/scons ./main.py run gem5/x86-boot-tests -j24
       - name: Run the build process with Docker
         uses: addnab/docker-run-action@v3
         with:
