@@ -53,8 +53,9 @@ jobs:
         uses: addnab/docker-run-action@v3
         with:
           image: gcr.io/gem5-test/ubuntu-22.04_all-dependencies:latest
-          # options: -v ${{ github.workspace }}:/var/www
+          options: -v ${{ github.workspace }}:/var/www
           run: |
+            echo "entered here"
             scons build/ALL/gem5.opt -j 24
             cd tests
             ./main.py run gem5/x86-boot-tests -j24 --skip-build
