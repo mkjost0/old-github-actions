@@ -2,15 +2,18 @@ name: GitHub Actions Demo
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on: [push]
 
-# we want to run precommit tests and assign reviewers
 jobs:
   hello_world_job:
     runs-on: [self-hosted, linux, x64]
     name: A job to say hello
     steps:
+      # To use this repository's private action,
+      # you must check out the repository
+      - name: Checkout
+        uses: actions/checkout@v3
       - name: Hello world action step
+        uses: ./ # Uses an action in the root directory
         id: hello
-        uses: actions/hello-world-docker-actionv2
         with:
           who-to-greet: 'Mona the Octocat'
       # Use the output from the `hello` step
