@@ -4,15 +4,28 @@ on: [push]
 
 # we want to run precommit tests and assign reviewers
 jobs:
-  compile:
-
+  hello_world_job:
     runs-on: [self-hosted, linux, x64]
-    strategy:
-      matrix:
-        python-version: [3.8]
-
+    name: A job to say hello
     steps:
-      - uses: actions/checkout@v3
+      - name: Hello world action step
+        id: hello
+        uses: actions/hello-world-docker-actionv2
+        with:
+          who-to-greet: 'Mona the Octocat'
+      # Use the output from the `hello` step
+      - name: Get the output time
+        run: echo "The time was ${{ steps.hello.outputs.time }}"
+
+  # compile:
+
+  #   runs-on: [self-hosted, linux, x64]
+  #   strategy:
+  #     matrix:
+  #       python-version: [3.8]
+
+  #   steps:
+  #     - uses: actions/checkout@v3
 
       # - name: Set up Python ${{ matrix.python-version }}
       #   uses: actions/setup-python@v4
@@ -46,29 +59,31 @@ jobs:
       #       fi
       #     done
       # - name: print docker info
-      #   run: |
-      #     # docker images
-      #     # docker run -u $UID:$GID --volume $(pwd):$(pwd) -w $(pwd) --rm "gcr.io/gem5-test/ubuntu-22.04_all-dependencies:latest" /usr/bin/env python3 /usr/bin/scons 
-      #     # cd tests
-      #     # scons build/ALL/gem5.opt -j 24
-      #     # ./main.py run gem5/x86-boot-tests -j24 --skip-build
-      #     pwd
-      #     echo "hello"
-      #     docker run -u $UID:$GID --volume $(pwd):$(pwd) -w $(pwd) --rm gcr.io/gem5-test/ubuntu-22.04_all-dependencies:latest /usr/bin/env python3 /usr/bin/scons build/ALL/gem5.fast -j4 --no-compress-debug --ignore-style
-      #     cd tests
-      #     echo "testing directory"
-      #     ls
-      #     ./main.py run -j4 -t4 gem5 -vv && scons -C .. --no-compress-debug --ignore-style build/ARM/unittests.opt
-      - name: Run the build process with Docker
-        uses: addnab/docker-run-action@v3
-        with:
-          image: gcr.io/gem5-test/ubuntu-22.04_all-dependencies:latest
-          # options: -v ${{ github.workspace }}:/var/www
-          run: |
-            echo "entered here"
-            scons build/ALL/gem5.opt -j 24
-            cd tests
-            ./main.py run gem5/x86-boot-tests -j24 --skip-build
+      #   uses: 'docker'
+      #   image: 'Dockerfile'
+      # #   run: |
+      # #     # docker images
+      # #     # docker run -u $UID:$GID --volume $(pwd):$(pwd) -w $(pwd) --rm "gcr.io/gem5-test/ubuntu-22.04_all-dependencies:latest" /usr/bin/env python3 /usr/bin/scons 
+      # #     # cd tests
+      # #     # scons build/ALL/gem5.opt -j 24
+      # #     # ./main.py run gem5/x86-boot-tests -j24 --skip-build
+      # #     pwd
+      # #     echo "hello"
+      # #     docker run -u $UID:$GID --volume $(pwd):$(pwd) -w $(pwd) --rm gcr.io/gem5-test/ubuntu-22.04_all-dependencies:latest /usr/bin/env python3 /usr/bin/scons build/ALL/gem5.fast -j4 --no-compress-debug --ignore-style
+      # #     cd tests
+      # #     echo "testing directory"
+      # #     ls
+      # #     ./main.py run -j4 -t4 gem5 -vv && scons -C .. --no-compress-debug --ignore-style build/ARM/unittests.opt
+      # - name: Run the build process with Docker
+      #   uses: addnab/docker-run-action@v3
+      #   with:
+      #     image: gcr.io/gem5-test/ubuntu-22.04_all-dependencies:latest
+      #     # options: -v ${{ github.workspace }}:/var/www
+      #     run: |
+      #       echo "entered here"
+      #       scons build/ALL/gem5.opt -j 24
+      #       cd tests
+      #       ./main.py run gem5/x86-boot-tests -j24 --skip-build
 
       # - name: Run build script
       #   run: |
