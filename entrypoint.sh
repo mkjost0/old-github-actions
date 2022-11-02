@@ -3,6 +3,7 @@
 echo "Hello! $1"
 time=$(date)
 # echo "time=$time" >> $GITHUB_OUTPUT
+pwd
 ls
 cd tests
 scons build/ALL/gem5.opt -j 24
