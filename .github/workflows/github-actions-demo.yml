@@ -11,21 +11,32 @@ jobs:
       # you must check out the repository
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Hello world action step
-        uses: ./ # Uses an action in the root directory
-        id: hello
+      - name: Run the build process with Docker
+        uses: addnab/docker-run-action@v3
         with:
-          who-to-greet: 'Mona the Octocat'
-      # Use the output from the `hello` step
-      - name: Get the output time
-        run: echo "The time was ${{ steps.hello.outputs.time }}"
-      - name: tests
-        run: |
-          if [ -f /.dockerenv ]; then
-            echo "I'm inside matrix ;(";
-          else
-            echo "I'm living in real world!";
-          fi
+          image: 'Dockerfile'
+          options: -v ${{ github.workspace }}:/var/www
+          run: |
+            if [ -f /.dockerenv ]; then
+              echo "I'm inside matrix ;(";
+            else
+              echo "I'm living in real world!";
+            fi
+      # - name: Hello world action step
+      #   uses: ./ # Uses an action in the root directory
+      #   id: hello
+      #   with:
+      #     who-to-greet: 'Mona the Octocat'
+      # # Use the output from the `hello` step
+      # - name: Get the output time
+      #   run: echo "The time was ${{ steps.hello.outputs.time }}"
+      # - name: tests
+      #   run: |
+      #     if [ -f /.dockerenv ]; then
+      #       echo "I'm inside matrix ;(";
+      #     else
+      #       echo "I'm living in real world!";
+      #     fi
 
   # compile:
 
