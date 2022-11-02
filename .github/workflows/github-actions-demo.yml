@@ -5,25 +5,33 @@ on: [push]
 jobs:
   hello_world_job:
     runs-on: [self-hosted, linux, x64]
-    name: A job to say hello
+    container:
+      image: 'Dockerfile'
     steps:
+      - name: Log the node version
+        run: |
+          if [ -f /.dockerenv ]; then
+            echo "I'm inside matrix ;(";
+          else
+            echo "I'm living in real world!";
+          fi
       # To use this repository's private action,
       # you must check out the repository
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Run the build process with Docker
-        uses: addnab/docker-run-action@v3
-        with:
-          using: 'docker'
-          image: 'Dockerfile'
-          options: -v ${{ github.workspace }}:/var/www
-          run: |
-            if [ -f /.dockerenv ]; then
-              echo "I'm inside matrix ;(";
-            else
-              echo "I'm living in real world!";
-            fi
-      # - name: Hello world action step
+      # - name: Checkout
+      #   uses: actions/checkout@v3
+      # - name: Run the build process with Docker
+      #   uses: addnab/docker-run-action@v3
+      #   with:
+      #     using: 'docker'
+      #     image: 'Dockerfile'
+      #     options: -v ${{ github.workspace }}:/var/www
+      #     run: |
+      #       if [ -f /.dockerenv ]; then
+      #         echo "I'm inside matrix ;(";
+      #       else
+      #         echo "I'm living in real world!";
+      #       fi
+      # # - name: Hello world action step
       #   uses: ./ # Uses an action in the root directory
       #   id: hello
       #   with:
