@@ -6,7 +6,7 @@ jobs:
   hello_world_job:
     runs-on: [self-hosted, linux, x64]
     container:
-      image: 'Dockerfile'
+      image: gcr.io/gem5-test/ubuntu-20.04_all-dependencies:v22-0
     steps:
       - name: Log the node version
         run: |
