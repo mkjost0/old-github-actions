@@ -15,7 +15,15 @@ jobs:
             run: |
               echo "HELLO"
               ls
+              echo "pls"
+              if [ -f /.dockerenv ]; then
+                echo "I'm inside matrix ;(";
+              else
+                echo "I'm living in real world!";
+              fi
               scons build/ALL/gem5.opt -j 24
+              cd tests
+              ./main.py run gem5/x86-boot-tests -j24 --skip-build
 
     # steps:
     #   - name: Check out the repo
