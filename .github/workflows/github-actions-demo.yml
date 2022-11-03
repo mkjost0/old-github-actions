@@ -11,6 +11,7 @@ jobs:
         steps:
           - name: test
             run: |
+              pwd
               scons build/ALL/gem5.opt -j 24
 
     # steps:
