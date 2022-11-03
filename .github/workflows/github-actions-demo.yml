@@ -7,16 +7,16 @@ jobs:
     compile:
         name: Compile site assets
         runs-on: [self-hosted, linux, x64]
-        # container:
-        #     image: mkjost/simplewhale:latest
-        #     options: --user 1000
+        container:
+            image: mkjost/simplewhale:latest
+            options: --user 1000
         steps:
           - name: Check out the repo
             uses: actions/checkout@v2
-          - name: test
-            run: |
-              # docker run -u $UID:$GID --volume $(pwd):$(pwd) -w $(pwd) --rm "gcr.io/gem5-test/ubuntu-20.04_all-dependencies:v22-0" "scons build/ALL/gem5.opt -j 24 && cd tests && ./main.py run -j4 -t4 gem5 -vv && scons -C .. --no-compress-debug --ignore-style build/ARM/unittests.opt"
-              docker run -u $UID:$GID --volume $(pwd):$(pwd) -w $(pwd) --rm "gcr.io/gem5-test/ubuntu-20.04_all-dependencies:v22-0" "ls"
+          # - name: test
+          #   run: |
+          #     # docker run -u $UID:$GID --volume $(pwd):$(pwd) -w $(pwd) --rm "gcr.io/gem5-test/ubuntu-20.04_all-dependencies:v22-0" "scons build/ALL/gem5.opt -j 24 && cd tests && ./main.py run -j4 -t4 gem5 -vv && scons -C .. --no-compress-debug --ignore-style build/ARM/unittests.opt"
+          #     docker run -u $UID:$GID --volume $(pwd):$(pwd) -w $(pwd) --rm "gcr.io/gem5-test/ubuntu-20.04_all-dependencies:v22-0" "ls"
           - name: check info
             run: |
               # cat cat /proc/cpuinfo
@@ -25,16 +25,16 @@ jobs:
               else
                 echo "I'm living in real world!";
               fi
-          - name: build gem5
-            run: |
-              echo "nothing happens here"
-              scons build/ALL/gem5.opt -j 24
-              # scons build/ALL/gem5.fast -j4 --no-compress-debug --ignore-style
-          - name: run x86 tests without initial build
-            run: |
-              cd tests
-              ./main.py run gem5/x86-boot-tests -j24
-              # ./main.py run -j4 -t4 gem5 -vv && scons -C .. --no-compress-debug --ignore-style build/ARM/unittests.opt
+          # - name: build gem5
+          #   run: |
+          #     echo "nothing happens here"
+          #     scons build/ALL/gem5.opt -j 24
+          #     # scons build/ALL/gem5.fast -j4 --no-compress-debug --ignore-style
+          # - name: run x86 tests without initial build
+          #   run: |
+          #     cd tests
+          #     ./main.py run gem5/x86-boot-tests -j24
+          #     # ./main.py run -j4 -t4 gem5 -vv && scons -C .. --no-compress-debug --ignore-style build/ARM/unittests.opt
     # gcr.io/gem5-test/ubuntu-20.04_all-dependencies:v22-0
 
     # steps:
