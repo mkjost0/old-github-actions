@@ -25,7 +25,8 @@ jobs:
               fi
           - name: build gem5
             run: |
-              scons build/ALL/gem5.opt -j 24
+              echo "building for test chosen"
+              # scons build/ALL/gem5.opt -j 24
               # scons build/ALL/gem5.fast -j4 --no-compress-debug --ignore-style
           - name: run x86 tests
             run: |
