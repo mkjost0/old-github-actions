@@ -9,9 +9,11 @@ jobs:
         container:
             image: mkjost/simplewhale:latest
         steps:
+          - name: Check out the repo
+            uses: actions/checkout@v2
           - name: test
             run: |
-              pwd
+              echo "HELLO"
               ls
               scons build/ALL/gem5.opt -j 24
 
