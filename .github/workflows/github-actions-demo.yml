@@ -5,19 +5,18 @@ on: [push]
 jobs:
     compile:
         name: Compile site assets
-        runs-on: [self-hosted, linux, x64]
+        runs-on: ubuntu-latest
+        container:
+            image: mkjost/simplewhale:latest
         steps:
-          - name: Check out the repo
-            uses: actions/checkout@v2
-          - name: Run the build process with Docker
-            uses: addnab/docker-run-action@v3
-            with:
-                image: aschmelyun/cleaver:latest
-                options: -v ${{ github.workspace }}:/var/www
-                run: |
-                    composer install
-                    npm install
-                    npm run production
+          - name: test
+            run: |
+            if [ -f /.dockerenv ]; then
+              echo "I'm inside matrix ;(";
+            else
+              echo "I'm living in real world!";
+            fi
+
     # steps:
     #   - name: Check out the repo
     #     uses: actions/checkout@v2
