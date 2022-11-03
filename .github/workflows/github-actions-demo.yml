@@ -1,6 +1,7 @@
 name: GitHub Actions Demo
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on: [push]
+permissions: write-all
 
 jobs:
     compile:
@@ -26,7 +27,7 @@ jobs:
           - name: build gem5
             run: |
               echo "nothing happens here"
-              # scons build/ALL/gem5.opt -j 24
+              scons build/ALL/gem5.opt -j 24
               # scons build/ALL/gem5.fast -j4 --no-compress-debug --ignore-style
           - name: run x86 tests without initial build
             run: |
