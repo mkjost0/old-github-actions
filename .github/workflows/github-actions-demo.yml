@@ -16,14 +16,18 @@ jobs:
               echo "HELLO"
               ls
               echo "pls"
+              # cat cat /proc/cpuinfo
               if [ -f /.dockerenv ]; then
                 echo "I'm inside matrix ;(";
               else
                 echo "I'm living in real world!";
               fi
-              scons build/ALL/gem5.opt -j 24
+              # scons build/ALL/gem5.opt -j 24
+              scons build/ALL/gem5.fast -j4 --no-compress-debug --ignore-style
               cd tests
-              ./main.py run gem5/x86-boot-tests -j24 --skip-build
+              # ./main.py run gem5/x86-boot-tests -j24 --skip-build
+              ./main.py run -j4 -t4 gem5 -vv && scons -C .. --no-compress-debug --ignore-style build/ARM/unittests.opt
+    # gcr.io/gem5-test/ubuntu-20.04_all-dependencies:v22-0
 
     # steps:
     #   - name: Check out the repo
