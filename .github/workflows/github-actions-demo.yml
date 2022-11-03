@@ -8,7 +8,7 @@ jobs:
         name: Compile site assets
         runs-on: [self-hosted, linux, x64]
         container:
-            image: gcr.io/gem5-test/ubuntu-20.04_all-dependencies:v22-0
+            image: mkjost/simplewhale:latest
         steps:
           # - name: Check out the repo
           #   uses: actions/checkout@v2
