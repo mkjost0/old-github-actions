@@ -11,7 +11,7 @@ jobs:
       - name: Run the build process with Docker
         uses: addnab/docker-run-action@v3
         with:
-          image: aschmelyun/cleaver:latest
+          image: gcr.io/gem5-test/ubuntu-20.04_all-dependencies:v22-0
           options: -v ${{ github.workspace }}:/var/www
           run: |
             composer install
