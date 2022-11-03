@@ -11,11 +11,11 @@ jobs:
         steps:
           - name: test
             run: |
-            if [ -f /.dockerenv ]; then
-              echo "I'm inside matrix ;(";
-            else
-              echo "I'm living in real world!";
-            fi
+              if [ -f /.dockerenv ]; then
+                echo "I'm inside matrix ;(";
+              else
+                echo "I'm living in real world!";
+              fi
 
     # steps:
     #   - name: Check out the repo
