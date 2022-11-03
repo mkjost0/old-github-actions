@@ -8,8 +8,8 @@ jobs:
     container:
       image: gcr.io/gem5-test/ubuntu-20.04_all-dependencies:v22-0
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+      # - name: Checkout repository
+      #   uses: actions/checkout@v3
       - name: Set ownership
         run: |
           # Workaround for https://github.com/actions/runner/issues/2033
