@@ -10,6 +10,8 @@ jobs:
         container:
             image: mkjost/simplewhale:latest
             # options: --user 1001
+            volumes:
+              - /home/mkjost/runner-test/actions-runner/_work/_actions:/scr/meliss
         steps:
           - name: Check out the repo
             uses: actions/checkout@v2
