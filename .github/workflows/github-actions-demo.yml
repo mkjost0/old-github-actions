@@ -13,6 +13,7 @@ jobs:
             volumes:
               - /home/mkjost/runner-test/actions-runner/_work/_actions:/scr/meliss
         steps:
+          - run: chown -R 1001:1001 /github/home/.cache && echo "pwn dat cache"
           - name: Check out the repo
             uses: actions/checkout@v2
           # - name: test
