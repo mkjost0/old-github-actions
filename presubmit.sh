@@ -56,14 +56,13 @@ GEM5ART_TESTS=tests/jenkins/gem5art-tests.sh
 #     "${DOCKER_IMAGE_ALL_DEP}" "${GEM5ART_TESTS}"
 
 #  Using a docker image with all the dependencies, we run the presubmit tests.
-docker run -u $UID:$GID --volume $(pwd):$(pwd) -w $(pwd) --rm \
-    "${DOCKER_IMAGE_ALL_DEP}" "${PRESUBMIT_STAGE2}"
+# docker run -u $UID:$GID --volume $(pwd):$(pwd) -w $(pwd) --rm \
+#     "${DOCKER_IMAGE_ALL_DEP}" "${PRESUBMIT_STAGE2}"
 
 # DOCKER_IMAGE_ALL_DEP compiles gem5.opt with GCC. We run a compilation of
 # gem5.fast on the Clang compiler to ensure changes are compilable with the
 # clang compiler.
-rm -rf build
+# rm -rf build
 docker run -u $UID:$GID --volume $(pwd):$(pwd) -w $(pwd) --rm \
     "${DOCKER_IMAGE_CLANG_COMPILE}" /usr/bin/env python3 /usr/bin/scons \
-    build/ALL/gem5.fast -j4 --no-compress-debug \
-    --ignore-style
+    build/ALL/unittests.opt -j24
