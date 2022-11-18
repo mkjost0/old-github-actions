@@ -13,13 +13,14 @@ jobs:
         #     volumes:
         #       - /home/mkjost/runner-test/actions-runner/_work/_actions:/scr/meliss
         steps:
-          # - run: chown -R 1001:1001 /github/home/ && echo "pwn dat cache"
+          # - run: chown -R 1001:1001 /github/home/ 
           - name: Check out the repo
             uses: actions/checkout@v2
           - name: test
             run: |
-               # docker run -u $UID:$GID --volume $(pwd):$(pwd) -w $(pwd) --rm "gcr.io/gem5-test/ubuntu-20.04_all-dependencies:v22-0" "scons build/ALL/gem5.opt -j 24 && cd tests && ./main.py run -j4 -t4 gem5 -vv && scons -C .. --no-compress-debug --ignore-style build/ARM/unittests.opt"
-               ./presubmit.sh
+              vagrant --version
+              #  docker run -u $UID:$GID --volume $(pwd):$(pwd) -w $(pwd) --rm "gcr.io/gem5-test/ubuntu-20.04_all-dependencies:v22-0" "scons build/ALL/gem5.opt -j 24 && cd tests && ./main.py run -j4 -t4 gem5 -vv && scons -C .. --no-compress-debug --ignore-style build/ARM/unittests.opt"
+              #  ./presubmit.sh
           - name: check info
             run: |
               # cat cat /proc/cpuinfo
