@@ -19,7 +19,7 @@ jobs:
           - name: test
             run: |
               # vagrant --version
-               docker run -u $UID:$GID --volume $(pwd):$(pwd) -w $(pwd) --rm "gcr.io/gem5-test/ubuntu-20.04_all-dependencies:v22-0" "scons build/ALL/gem5.opt -j 9 && cd tests && ./main.py run -j4 -t4 gem5 -vv
+               docker run -u $UID:$GID --volume $(pwd):$(pwd) -w $(pwd) --rm "gcr.io/gem5-test/ubuntu-20.04_all-dependencies:v22-0" "scons build/ALL/gem5.opt -j 9 && cd tests && ./main.py run -j4
               #  ./presubmit.sh
           - name: check info
             run: |
