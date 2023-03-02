@@ -1,0 +1,56 @@
+name: Kokoro Tests
+run-name: Testing gem5art tests
+#  allows us to repeat this daily at 2am
+#  https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule
+on:
+  schedule:
+    - cron:  '0 2 * * *'
+# on: [push]
+
+jobs:
+  Test-gem5art:
+    runs-on: [self-hosted, linux, x64]
+    timeout-minutes: 1440 # 24 hours
+    container: gcr.io/gem5-test/ubuntu-22.04_all-dependencies:latest
+
+    steps:
+    # checks out repository, should be more useful when
+    # running checks on changed files
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      # - uses: docker/build-action@v1
+
+      - name: Testing
+        run: |
+          set -e
+          # Creating a virtual environment allows us to cleanly install the packages
+          # within a Docker container.
+          # cd git/jenkins-gem5-prod/
+          # Install the packages
+          pip install -e util/gem5art/artifact
+          pip install -e util/gem5art/run
+          pip install -e util/gem5art/tasks
+
+      - name: Testing
+        run: |
+          # Run the gem5art artificat tests.
+          cd util/gem5art/artifact
+          python3 -m unittest
+          # mypy -p gem5art.artifact
+
+      - name: test
+        run: |
+          # Run the gem5art run tests.
+          cd ../run
+          python3 -m unittest
+          # mypy -p gem5art.run
+
+      - name: tests
+        run: |
+          # Run the gem5art task tests.
+          cd ../tasks
+          python3 -m unittest
+          # mypy -p gem5art.tasks
+
+      - run: echo "🍏 This job's status is ${{ job.status }}."

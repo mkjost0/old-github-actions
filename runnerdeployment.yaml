@@ -1,0 +1,32 @@
+apiVersion: actions.summerwind.dev/v1alpha1
+kind: RunnerDeployment
+metadata:
+  name: actions-runners
+spec:
+  replicas: 4
+  template:
+    spec:
+      repository: mkjost0/old-github-actions
+      # we can use the label below in order to assign specific runners
+      # to specific tasks when we want to start differentiating between
+      # build jobs and test jobs
+      # https://github.com/actions/actions-runner-controller/blob/master/docs/using-arc-runners-in-a-workflow.md
+      # labels:
+      #   - build-runner
+
+
+
+
+
+      # containers:
+      # - name: runner
+      #   env: []
+      #   resources:
+      #     limits:
+      #       cpu: "16.0"
+      #       memory: "16Gi"
+      #     requests:
+      #       cpu: "8.0"
+      #       memory: "8Gi"
+
+# add image (new image with summerwind and gem5 info)
